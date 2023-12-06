@@ -8,6 +8,41 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Escape
+vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Escape' })
+vim.keymap.set({ 'i', 'v' }, 'kj', '<Esc>', { desc = 'Escape' })
+vim.keymap.set('n', '<C-c>', '<Esc>', { desc = 'Escape' })
+
+-- Save & Quit
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save buffer' })
+vim.keymap.set('n', '<C-q>', ':wq!<CR>', { desc = 'Save and quit buffer' })
+
+-- Buffer navigation
+vim.keymap.set('n', '<TAB>', ':bnext<CR>', { desc = 'Move to next buffer' })
+vim.keymap.set('n', '<S-TAB>', ':bprevious<CR>', { desc = 'Move to previous buffer' })
+
+-- Use alt + hjkl to resize windows
+vim.keymap.set('n', '<M-j>', ':resize -2<CR>', { desc = 'Reduce windows horizontal size' })
+vim.keymap.set('n', '<M-k>', ':resize +2<CR>', { desc = 'Increase windows horizontal size' })
+vim.keymap.set('n', '<M-h>', ':vertical resize -2<CR>', { desc = 'Reduce windows vertical size' })
+vim.keymap.set('n', '<M-l>', ':vertical resize +2<CR>', { desc = 'Increase windows vertical size' })
+
+-- Editing vim.keymap.set('v', '<', '<gv', { desc = 'Reduce indentation' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Increase indentation' })
+vim.keymap.set('i', '<C-e>', '<C-o>A', { desc = 'Jump to end of line' })
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Format
+vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Format' })
+
+-- move block
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Vertical navigation
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
